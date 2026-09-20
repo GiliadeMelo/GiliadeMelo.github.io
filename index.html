@@ -1,227 +1,784 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meu Portfólio de Sites | Projetos em Produção</title>
-    <!-- Font Awesome para os ícones dos cards -->
-    <link rel="stylesheet" href="https://cloudflare.com">
-    <!-- Google Fonts para tipografia limpa -->
-    <link rel="preconnect" href="https://googleapis.com">
-    <link rel="preconnect" href="https://gstatic.com" crossorigin>
-    <link href="https://googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-    
-    <style>
-        :root {
-            --bg-color: #0f172a;
-            --card-bg: #1e293b;
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --accent: #38bdf8;
-            --accent-hover: #0ea5e9;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Desenvolvimento Web Profissional | Portfólio de Sites</title>
+  <meta name="description" content="Portfólio de sites profissionais desenvolvidos para diferentes segmentos. Conheça projetos criados para destacar sua empresa na internet e solicite um orçamento.">
+  <meta name="author" content="Estúdio Web">
+  <meta name="theme-color" content="#080B12">
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Desenvolvimento Web Profissional | Portfólio de Sites">
+  <meta property="og:description" content="Portfólio de sites profissionais desenvolvidos para diferentes segmentos. Conheça nossos projetos e solicite um orçamento.">
+  <meta property="og:locale" content="pt_BR">
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            line-height: 1.6;
-            padding: 2rem 1rem;
-        }
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Desenvolvimento Web Profissional | Portfólio de Sites">
+  <meta name="twitter:description" content="Portfólio de sites profissionais desenvolvidos para diferentes segmentos.">
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-        header {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              bg: '#080B12',
+              bg2: '#0F172A',
+              card: '#111827',
+              elevated: '#172033',
+              text: '#F8FAFC',
+              muted: '#94A3B8',
+              border: '#263244',
+              primary: '#38BDF8',
+              secondary: '#818CF8',
+              wa: '#16A34A',
+            },
+          },
+          animation: {
+            'float-slow': 'float 6s ease-in-out infinite',
+            'pulse-soft': 'pulseSoft 2s ease-in-out infinite',
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-8px)' },
+            },
+            pulseSoft: {
+              '0%, 100%': { opacity: 1 },
+              '50%': { opacity: 0.6 },
+            },
+          },
+        },
+      },
+    };
+  </script>
 
-        header h1 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            background: linear-gradient(to right, #38bdf8, #818cf8);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
+  <style>
+    html { scroll-behavior: smooth; }
+    body {
+      background-color: #080B12;
+      color: #F8FAFC;
+      font-family: 'Inter', system-ui, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 10px; }
+    ::-webkit-scrollbar-track { background: #080B12; }
+    ::-webkit-scrollbar-thumb { background: #1F2937; border-radius: 8px; }
+    ::-webkit-scrollbar-thumb:hover { background: #263244; }
 
-        header p {
-            color: var(--text-muted);
-            font-size: 1.1rem;
-            max-width: 600px;
-            margin: 0 auto;
-        }
+    /* Focus visible */
+    a:focus-visible, button:focus-visible {
+      outline: 2px solid #38BDF8;
+      outline-offset: 3px;
+      border-radius: 6px;
+    }
 
-        /* Grid de Projetos */
-        .catalog-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 2rem;
-        }
+    /* Grid pattern */
+    .bg-grid {
+      background-image:
+        linear-gradient(rgba(56, 189, 248, 0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(56, 189, 248, 0.06) 1px, transparent 1px);
+      background-size: 40px 40px;
+      mask-image: radial-gradient(ellipse at center, black 40%, transparent 75%);
+      -webkit-mask-image: radial-gradient(ellipse at center, black 40%, transparent 75%);
+    }
 
-        /* Estrutura do Card */
-        .card {
-            background-color: var(--card-bg);
-            border-radius: 12px;
-            padding: 2rem;
-            text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 1px solid #334155;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
+    .bg-glow {
+      background: radial-gradient(ellipse at top, rgba(56,189,248,0.15), transparent 60%);
+    }
 
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-            border-color: var(--accent);
-        }
+    .text-gradient {
+      background: linear-gradient(120deg, #38BDF8 0%, #818CF8 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
 
-        .card-icon {
-            font-size: 2.5rem;
-            color: var(--accent);
-            margin-bottom: 1.5rem;
-        }
+    /* Browser mockup */
+    .browser-window {
+      background: #0F172A;
+      border: 1px solid #263244;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow:
+        0 30px 60px -15px rgba(0, 0, 0, 0.6),
+        0 0 0 1px rgba(56,189,248,0.05);
+    }
+    .browser-header {
+      background: #111827;
+      padding: 12px 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border-bottom: 1px solid #263244;
+    }
+    .browser-dot { width: 10px; height: 10px; border-radius: 50%; }
 
-        .card h3 {
-            font-size: 1.3rem;
-            margin-bottom: 0.75rem;
-            color: var(--text-main);
-        }
+    /* Card hover */
+    .project-card {
+      transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    .project-card:hover {
+      transform: translateY(-4px);
+      border-color: #38BDF8;
+      box-shadow: 0 20px 40px -10px rgba(56, 189, 248, 0.15);
+    }
+    .project-card:hover .card-arrow {
+      transform: translateX(4px);
+    }
+    .card-arrow {
+      transition: transform 0.3s ease;
+    }
 
-        .card p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            margin-bottom: 1.5rem;
-            flex-grow: 1;
-        }
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .animate-float-slow, .animate-pulse-soft { animation: none !important; }
+      .project-card { transition: none; }
+      .project-card:hover { transform: none; }
+    }
 
-        /* Botão do Card */
-        .btn-view {
-            display: inline-block;
-            background-color: transparent;
-            color: var(--accent);
-            border: 2px solid var(--accent);
-            padding: 0.6rem 1.5rem;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.9rem;
-            transition: all 0.2s ease;
-        }
+    /* Mobile menu */
+    .mobile-menu {
+      transform: translateY(-120%);
+      transition: transform 0.3s ease;
+    }
+    .mobile-menu.open {
+      transform: translateY(0);
+    }
 
-        .btn-view:hover {
-            background-color: var(--accent);
-            color: var(--bg-color);
-        }
+    /* Link underline effect */
+    .nav-link { position: relative; }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #38BDF8;
+      transition: width 0.3s ease;
+    }
+    .nav-link:hover::after { width: 100%; }
 
-        footer {
-            text-align: center;
-            margin-top: 5rem;
-            padding-top: 2rem;
-            border-top: 1px solid #334155;
-            color: var(--text-muted);
-            font-size: 0.9rem;
-        }
-
-        footer a {
-            color: var(--accent);
-            text-decoration: none;
-        }
-
-        /* Responsividade */
-        @media (max-width: 768px) {
-            header h1 { font-size: 2rem; }
-            body { padding: 1.5rem 0.5rem; }
-        }
-    </style>
+    /* Tag chip */
+    .niche-chip {
+      background: rgba(56, 189, 248, 0.1);
+      color: #38BDF8;
+      border: 1px solid rgba(56, 189, 248, 0.25);
+    }
+  </style>
 </head>
-<body>
+<body class="min-h-screen">
 
-    <div class="container">
-        <header>
-            <h1>Meu Portfólio de Sites</h1>
-            <p>Explore abaixo os projetos e conceitos de landing pages desenvolvidos para diferentes nichos de mercado.</p>
-        </header>
+  <!-- Skip link -->
+  <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[60] focus:bg-brand-primary focus:text-brand-bg focus:px-4 focus:py-2 focus:rounded-md">Pular para o conteúdo</a>
 
-        <main class="catalog-grid">
-            
-            <!-- Card: Pintor -->
-            <div class="card">
-                <div>
-                    <div class="card-icon"><i class="fa-solid fa-paint-roller"></i></div>
-                    <h3>Pintor Residencial</h3>
-                    <p>Landing page focada em conversão, exibição de antes/depois e orçamento rápido para serviços de pintura.</p>
-                </div>
-                <a href="./site-pintor/" class="btn-view">Acessar Demo</a>
-            </div>
+  <!-- Header -->
+  <header id="header" class="fixed top-0 inset-x-0 z-40 transition-all duration-300">
+    <div class="bg-brand-bg/80 backdrop-blur-md border-b border-brand-border">
+      <nav class="max-w-7xl mx-auto px-5 md:px-8 h-16 flex items-center justify-between" aria-label="Navegação principal">
+        <a href="#inicio" class="flex items-center gap-2.5 group" aria-label="Página inicial">
+          <div class="w-9 h-9 rounded-lg bg-gradient-to-br from-brand-primary to-brand-secondary flex items-center justify-center shadow-lg shadow-brand-primary/20">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#080B12" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+          </div>
+          <div class="flex flex-col leading-none">
+            <span class="font-bold text-sm md:text-base text-brand-text tracking-tight">Estúdio Web</span>
+            <span class="text-[10px] md:text-[11px] text-brand-muted font-medium">Desenvolvimento profissional</span>
+          </div>
+        </a>
 
-            <!-- Card: Psicólogo -->
-            <div class="card">
-                <div>
-                    <div class="card-icon"><i class="fa-solid fa-brain"></i></div>
-                    <h3>Psicologia Clínica</h3>
-                    <p>Design minimalista e acolhedor, focado em agendamento de consultas e apresentação de especialidades.</p>
-                </div>
-                <a href="./site-psicologo/" class="btn-view">Acessar Demo</a>
-            </div>
+        <!-- Desktop nav -->
+        <ul class="hidden md:flex items-center gap-8">
+          <li><a href="#inicio" class="nav-link text-sm text-brand-text/90 hover:text-brand-primary font-medium">Início</a></li>
+          <li><a href="#projetos" class="nav-link text-sm text-brand-text/90 hover:text-brand-primary font-medium">Projetos</a></li>
+          <li><a href="#servicos" class="nav-link text-sm text-brand-text/90 hover:text-brand-primary font-medium">Serviços</a></li>
+          <li><a href="#orcamento" class="nav-link text-sm text-brand-text/90 hover:text-brand-primary font-medium">Orçamento</a></li>
+        </ul>
 
-            <!-- Card: Loja de Açaí -->
-            <div class="card">
-                <div>
-                    <div class="card-icon"><i class="fa-solid fa-bowl-food"></i></div>
-                    <h3>Loja de Açaí</h3>
-                    <p>Menu digital interativo integrado com direcionamento de pedidos direto para o WhatsApp comercial.</p>
-                </div>
-                <a href="./site-acai/" class="btn-view">Acessar Demo</a>
-            </div>
+        <a href="#" id="headerCta" class="hidden md:inline-flex items-center gap-2 bg-brand-wa hover:brightness-110 text-white text-sm font-semibold px-4 py-2.5 rounded-lg transition shadow-md shadow-brand-wa/20">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Solicitar orçamento
+        </a>
 
-            <!-- Card: Barbearia -->
-            <div class="card">
-                <div>
-                    <div class="card-icon"><i class="fa-solid fa-scissors"></i></div>
-                    <h3>Barbearia Moderna</h3>
-                    <p>Visual urbano "Old School" com tabela de preços e integração para sistemas de reserva de horário.</p>
-                </div>
-                <a href="./site-barbearia/" class="btn-view">Acessar Demo</a>
-            </div>
-
-            <!-- Card: Geladão -->
-            <div class="card">
-                <div>
-                    <div class="card-icon"><i class="fa-solid fa-ice-cream"></i></div>
-                    <h3>Geladão Gourmet</h3>
-                    <p>Página vibrante e colorida para destacar sabores artesanais e combos para eventos e revendedores.</p>
-                </div>
-                <a href="./site-geladao/" class="btn-view">Acessar Demo</a>
-            </div>
-
-            <!-- Card: Corretor -->
-            <div class="card">
-                <div>
-                    <div class="card-icon"><i class="fa-solid fa-house-chimney"></i></div>
-                    <h3>Corretor de Imóveis</h3>
-                    <p>Vitrine de imóveis com filtros visuais dinâmicos e captura de leads qualificados para o setor imobiliário.</p>
-                </div>
-                <a href="./site-corretor/" class="btn-view">Acessar Demo</a>
-            </div>
-
-        </main>
-
-        <footer>
-            <p>&copy; 2026 Seu Nome. Desenvolvido e hospedado com <a href="https://github.com" target="_blank">GitHub Pages</a>.</p>
-        </footer>
+        <!-- Mobile toggle -->
+        <button id="menuToggle" class="md:hidden p-2 -mr-2 text-brand-text" aria-label="Abrir menu" aria-expanded="false">
+          <svg id="iconOpen" xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+          <svg id="iconClose" xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="hidden"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </nav>
     </div>
 
+    <!-- Mobile menu -->
+    <div id="mobileMenu" class="mobile-menu md:hidden bg-brand-bg border-b border-brand-border">
+      <ul class="max-w-7xl mx-auto px-5 py-6 flex flex-col gap-1">
+        <li><a href="#inicio" class="mobile-link block px-4 py-3 rounded-lg hover:bg-brand-card text-brand-text font-medium">Início</a></li>
+        <li><a href="#projetos" class="mobile-link block px-4 py-3 rounded-lg hover:bg-brand-card text-brand-text font-medium">Projetos</a></li>
+        <li><a href="#servicos" class="mobile-link block px-4 py-3 rounded-lg hover:bg-brand-card text-brand-text font-medium">Serviços</a></li>
+        <li><a href="#orcamento" class="mobile-link block px-4 py-3 rounded-lg hover:bg-brand-card text-brand-text font-medium">Orçamento</a></li>
+        <li class="pt-2">
+          <a href="#" id="mobileCta" class="block text-center bg-brand-wa hover:brightness-110 text-white font-semibold px-4 py-3 rounded-lg transition shadow-md shadow-brand-wa/20">
+            Solicitar orçamento pelo WhatsApp
+          </a>
+        </li>
+      </ul>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- HERO -->
+    <section id="inicio" class="relative pt-24 pb-20 md:pt-32 md:pb-28 overflow-hidden">
+      <!-- Decorative bg -->
+      <div class="absolute inset-0 bg-grid pointer-events-none" aria-hidden="true"></div>
+      <div class="absolute inset-x-0 top-0 h-[500px] bg-glow pointer-events-none" aria-hidden="true"></div>
+      <div class="absolute top-40 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-brand-secondary/10 rounded-full blur-[120px] pointer-events-none" aria-hidden="true"></div>
+
+      <div class="relative max-w-7xl mx-auto px-5 md:px-8 grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+        <!-- Text -->
+        <div class="lg:col-span-7 text-center lg:text-left">
+          <div class="inline-flex items-center gap-2 bg-brand-card border border-brand-border px-3.5 py-1.5 rounded-full mb-6">
+            <span class="w-2 h-2 rounded-full bg-brand-primary animate-pulse-soft"></span>
+            <span class="text-[11px] md:text-xs font-semibold tracking-[0.18em] text-brand-muted uppercase">Desenvolvimento Web Profissional</span>
+          </div>
+
+          <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-[68px] font-extrabold leading-[1.05] tracking-tight text-brand-text">
+            Sites profissionais para <span class="text-gradient">destacar sua empresa</span> na internet.
+          </h1>
+
+          <p class="mt-6 text-base md:text-lg text-brand-muted leading-relaxed max-w-xl mx-auto lg:mx-0">
+            Conheça alguns projetos desenvolvidos para diferentes segmentos e veja como uma presença digital profissional pode valorizar sua empresa e atrair mais clientes.
+          </p>
+
+          <div class="mt-10 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 justify-center lg:justify-start">
+            <a href="#" id="heroCta" class="group inline-flex items-center justify-center gap-2.5 bg-brand-wa hover:brightness-110 text-white font-semibold px-6 py-4 rounded-xl transition shadow-lg shadow-brand-wa/25 text-sm md:text-base">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              Solicitar orçamento
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="transition-transform group-hover:translate-x-0.5" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </a>
+            <a href="#projetos" class="inline-flex items-center justify-center gap-2 bg-brand-card hover:bg-brand-elevated border border-brand-border text-brand-text font-semibold px-6 py-4 rounded-xl transition text-sm md:text-base">
+              Ver projetos
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </a>
+          </div>
+
+          <!-- Trust row -->
+          <dl class="mt-12 grid grid-cols-3 gap-4 max-w-md mx-auto lg:mx-0">
+            <div class="text-center lg:text-left">
+              <dt class="text-[11px] uppercase tracking-wider text-brand-muted">Nichos atendidos</dt>
+              <dd class="text-xl md:text-2xl font-bold text-brand-text mt-1">6+</dd>
+            </div>
+            <div class="text-center lg:text-left border-x border-brand-border">
+              <dt class="text-[11px] uppercase tracking-wider text-brand-muted">Sites entregues</dt>
+              <dd class="text-xl md:text-2xl font-bold text-brand-text mt-1">100%</dd>
+            </div>
+            <div class="text-center lg:text-left">
+              <dt class="text-[11px] uppercase tracking-wider text-brand-muted">Responsivos</dt>
+              <dd class="text-xl md:text-2xl font-bold text-brand-text mt-1">Todos</dd>
+            </div>
+          </dl>
+        </div>
+
+        <!-- Visual: Browser mockup -->
+        <div class="lg:col-span-5 relative flex justify-center">
+          <div class="relative w-full max-w-md animate-float-slow">
+            <!-- Glow behind -->
+            <div class="absolute -inset-6 bg-gradient-to-tr from-brand-primary/20 via-brand-secondary/10 to-transparent blur-3xl rounded-full" aria-hidden="true"></div>
+
+            <div class="browser-window relative">
+              <div class="browser-header">
+                <span class="browser-dot bg-red-500/80"></span>
+                <span class="browser-dot bg-yellow-500/80"></span>
+                <span class="browser-dot bg-green-500/80"></span>
+                <div class="ml-3 flex-1 bg-brand-bg rounded-md h-6 flex items-center px-3">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                  <span class="ml-2 text-[10px] text-brand-muted">www.suaempresa.com.br</span>
+                </div>
+              </div>
+              <div class="p-5 bg-gradient-to-br from-brand-bg2 to-brand-bg">
+                <!-- Fake UI -->
+                <div class="flex items-center gap-2 mb-4">
+                  <div class="w-8 h-8 rounded-md bg-gradient-to-br from-brand-primary to-brand-secondary"></div>
+                  <div class="h-2 w-20 bg-brand-border rounded-full"></div>
+                  <div class="ml-auto h-6 w-14 bg-brand-primary/90 rounded-md"></div>
+                </div>
+                <div class="space-y-2 mb-4">
+                  <div class="h-4 w-3/4 bg-brand-text/80 rounded"></div>
+                  <div class="h-4 w-2/3 bg-brand-text/50 rounded"></div>
+                </div>
+                <div class="h-2 w-full bg-brand-border rounded-full mb-2"></div>
+                <div class="h-2 w-5/6 bg-brand-border rounded-full mb-4"></div>
+
+                <div class="grid grid-cols-3 gap-2">
+                  <div class="aspect-square rounded-lg bg-gradient-to-br from-brand-primary/30 to-brand-primary/10 border border-brand-border"></div>
+                  <div class="aspect-square rounded-lg bg-gradient-to-br from-brand-secondary/30 to-brand-secondary/10 border border-brand-border"></div>
+                  <div class="aspect-square rounded-lg bg-gradient-to-br from-brand-wa/30 to-brand-wa/10 border border-brand-border"></div>
+                </div>
+
+                <div class="mt-4 flex items-center justify-between bg-brand-card border border-brand-border rounded-lg p-3">
+                  <div class="flex items-center gap-2">
+                    <div class="w-6 h-6 rounded-full bg-brand-primary/20 flex items-center justify-center">
+                      <div class="w-2 h-2 rounded-full bg-brand-primary"></div>
+                    </div>
+                    <div class="h-2 w-24 bg-brand-muted/50 rounded"></div>
+                  </div>
+                  <div class="h-6 w-16 bg-brand-wa rounded-md"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Floating chip -->
+            <div class="absolute -left-4 sm:-left-10 top-10 bg-brand-card border border-brand-border rounded-xl p-3 shadow-xl hidden sm:flex items-center gap-2.5 animate-float-slow" style="animation-delay:-2s;">
+              <div class="w-9 h-9 rounded-lg bg-brand-wa/15 text-brand-wa flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              </div>
+              <div>
+                <div class="text-[11px] text-brand-muted leading-none mb-1">Site publicado</div>
+                <div class="text-sm font-semibold text-brand-text leading-none">No ar 24/7</div>
+              </div>
+            </div>
+
+            <div class="absolute -right-2 sm:-right-8 bottom-6 bg-brand-card border border-brand-border rounded-xl p-3 shadow-xl hidden sm:flex items-center gap-2.5 animate-float-slow" style="animation-delay:-4s;">
+              <div class="w-9 h-9 rounded-lg bg-brand-primary/15 text-brand-primary flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
+              </div>
+              <div>
+                <div class="text-[11px] text-brand-muted leading-none mb-1">Mobile first</div>
+                <div class="text-sm font-semibold text-brand-text leading-none">100% responsivo</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projetos" class="relative py-20 md:py-28 bg-brand-bg2">
+      <div class="max-w-7xl mx-auto px-5 md:px-8">
+        <div class="max-w-2xl mx-auto text-center mb-14 md:mb-20">
+          <span class="inline-block text-[11px] font-semibold tracking-[0.18em] text-brand-primary uppercase mb-4">Portfólio</span>
+          <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight text-brand-text leading-tight">Projetos em destaque</h2>
+          <p class="mt-4 text-brand-muted text-base md:text-lg leading-relaxed">
+            Uma seleção de sites criados para diferentes nichos de atuação. Cada projeto foi pensado para transmitir profissionalismo e facilitar o contato com o cliente final.
+          </p>
+        </div>
+
+        <div id="projectsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-7">
+          <!-- Cards are injected via JS to keep data centralized -->
+        </div>
+
+        <div class="mt-14 md:mt-20 text-center">
+          <p class="text-brand-muted mb-5 text-sm md:text-base">Gostou de algum projeto? O seu pode ser o próximo.</p>
+          <a href="#" id="projectsCta" class="inline-flex items-center gap-2 bg-brand-wa hover:brightness-110 text-white font-semibold px-7 py-4 rounded-xl transition shadow-lg shadow-brand-wa/25">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Solicitar orçamento pelo WhatsApp
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="servicos" class="relative py-20 md:py-28">
+      <div class="max-w-7xl mx-auto px-5 md:px-8">
+        <div class="max-w-2xl mx-auto text-center mb-14">
+          <span class="inline-block text-[11px] font-semibold tracking-[0.18em] text-brand-primary uppercase mb-4">O que fazemos</span>
+          <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight text-brand-text leading-tight">Soluções para diferentes negócios</h2>
+          <p class="mt-4 text-brand-muted text-base md:text-lg leading-relaxed">
+            Desenvolvemos o formato de site mais adequado para o objetivo da sua empresa.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
+          <!-- Site institucional -->
+          <div class="bg-brand-card border border-brand-border rounded-2xl p-6 hover:border-brand-primary/60 hover:-translate-y-1 transition-all">
+            <div class="w-11 h-11 rounded-xl bg-brand-primary/10 text-brand-primary flex items-center justify-center mb-5">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+            </div>
+            <h3 class="text-lg font-bold text-brand-text mb-2">Sites institucionais</h3>
+            <p class="text-sm text-brand-muted leading-relaxed">Apresentação completa da sua empresa, serviços e diferenciais.</p>
+          </div>
+          <!-- Landing -->
+          <div class="bg-brand-card border border-brand-border rounded-2xl p-6 hover:border-brand-primary/60 hover:-translate-y-1 transition-all">
+            <div class="w-11 h-11 rounded-xl bg-brand-primary/10 text-brand-primary flex items-center justify-center mb-5">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+            </div>
+            <h3 class="text-lg font-bold text-brand-text mb-2">Landing pages</h3>
+            <p class="text-sm text-brand-muted leading-relaxed">Páginas focadas em conversão e captação de clientes interessados.</p>
+          </div>
+          <!-- Catálogos -->
+          <div class="bg-brand-card border border-brand-border rounded-2xl p-6 hover:border-brand-primary/60 hover:-translate-y-1 transition-all">
+            <div class="w-11 h-11 rounded-xl bg-brand-primary/10 text-brand-primary flex items-center justify-center mb-5">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+            </div>
+            <h3 class="text-lg font-bold text-brand-text mb-2">Catálogos digitais</h3>
+            <p class="text-sm text-brand-muted leading-relaxed">Exposição organizada de produtos, imóveis ou serviços.</p>
+          </div>
+          <!-- Menus -->
+          <div class="bg-brand-card border border-brand-border rounded-2xl p-6 hover:border-brand-primary/60 hover:-translate-y-1 transition-all">
+            <div class="w-11 h-11 rounded-xl bg-brand-primary/10 text-brand-primary flex items-center justify-center mb-5">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8h1a4 4 0 0 1 0 8h-1"></path><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path><line x1="6" y1="1" x2="6" y2="4"></line><line x1="10" y1="1" x2="10" y2="4"></line><line x1="14" y1="1" x2="14" y2="4"></line></svg>
+            </div>
+            <h3 class="text-lg font-bold text-brand-text mb-2">Menus digitais</h3>
+            <p class="text-sm text-brand-muted leading-relaxed">Cardápios online integrados com WhatsApp para restaurantes e lanchonetes.</p>
+          </div>
+          <!-- Profissionais -->
+          <div class="bg-brand-card border border-brand-border rounded-2xl p-6 hover:border-brand-primary/60 hover:-translate-y-1 transition-all">
+            <div class="w-11 h-11 rounded-xl bg-brand-primary/10 text-brand-primary flex items-center justify-center mb-5">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+            </div>
+            <h3 class="text-lg font-bold text-brand-text mb-2">Sites para profissionais</h3>
+            <p class="text-sm text-brand-muted leading-relaxed">Apresentação pessoal para psicólogos, corretores, advogados e consultores.</p>
+          </div>
+          <!-- Comerciais -->
+          <div class="bg-brand-card border border-brand-border rounded-2xl p-6 hover:border-brand-primary/60 hover:-translate-y-1 transition-all">
+            <div class="w-11 h-11 rounded-xl bg-brand-primary/10 text-brand-primary flex items-center justify-center mb-5">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+            </div>
+            <h3 class="text-lg font-bold text-brand-text mb-2">Páginas comerciais</h3>
+            <p class="text-sm text-brand-muted leading-relaxed">Estrutura voltada para apresentar ofertas, promoções e oportunidades.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VALUE PROPOSITION -->
+    <section class="relative py-20 md:py-28 bg-brand-bg2">
+      <div class="max-w-7xl mx-auto px-5 md:px-8 grid lg:grid-cols-12 gap-12 items-start">
+        <div class="lg:col-span-5">
+          <span class="inline-block text-[11px] font-semibold tracking-[0.18em] text-brand-primary uppercase mb-4">Por que investir em um bom site</span>
+          <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight text-brand-text leading-tight">
+            Mais do que visual, uma <span class="text-gradient">ferramenta de negócios</span>.
+          </h2>
+          <p class="mt-5 text-brand-muted text-base md:text-lg leading-relaxed">
+            Um site bem estruturado ajuda sua empresa a transmitir confiança, ser encontrada e converter visitantes em clientes reais.
+          </p>
+        </div>
+
+        <div class="lg:col-span-7 grid sm:grid-cols-2 gap-5">
+          <div class="bg-brand-card border border-brand-border rounded-2xl p-6">
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-lg bg-brand-primary/10 text-brand-primary flex items-center justify-center shrink-0">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="13.5" cy="6.5" r=".5"></circle><circle cx="17.5" cy="10.5" r=".5"></circle><circle cx="8.5" cy="7.5" r=".5"></circle><circle cx="6.5" cy="12.5" r=".5"></circle><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"></path></svg>
+              </div>
+              <div>
+                <h3 class="text-base font-bold text-brand-text mb-1.5">Design profissional</h3>
+                <p class="text-sm text-brand-muted leading-relaxed">Apresentação visual pensada para transmitir confiança e qualidade da sua marca.</p>
+              </div>
+            </div>
+          </div>
+          <div class="bg-brand-card border border-brand-border rounded-2xl p-6">
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-lg bg-brand-primary/10 text-brand-primary flex items-center justify-center shrink-0">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
+              </div>
+              <div>
+                <h3 class="text-base font-bold text-brand-text mb-1.5">Experiência no celular</h3>
+                <p class="text-sm text-brand-muted leading-relaxed">Sites adaptados para a maioria dos clientes, que acessam pelo smartphone.</p>
+              </div>
+            </div>
+          </div>
+          <div class="bg-brand-card border border-brand-border rounded-2xl p-6">
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-lg bg-brand-primary/10 text-brand-primary flex items-center justify-center shrink-0">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+              </div>
+              <div>
+                <h3 class="text-base font-bold text-brand-text mb-1.5">Foco em conversão</h3>
+                <p class="text-sm text-brand-muted leading-relaxed">Estrutura planejada para facilitar o contato e a solicitação de orçamento.</p>
+              </div>
+            </div>
+          </div>
+          <div class="bg-brand-card border border-brand-border rounded-2xl p-6">
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-lg bg-brand-primary/10 text-brand-primary flex items-center justify-center shrink-0">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polyline></svg>
+              </div>
+              <div>
+                <h3 class="text-base font-bold text-brand-text mb-1.5">Carregamento rápido</h3>
+                <p class="text-sm text-brand-muted leading-relaxed">Código enxuto e estrutura otimizada para uma navegação mais fluida.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONVERSION -->
+    <section id="orcamento" class="relative py-20 md:py-28 overflow-hidden">
+      <div class="absolute inset-0 bg-gradient-to-br from-brand-primary/5 via-transparent to-brand-secondary/5 pointer-events-none" aria-hidden="true"></div>
+      <div class="relative max-w-4xl mx-auto px-5 md:px-8">
+        <div class="relative bg-brand-elevated border border-brand-border rounded-3xl p-8 md:p-14 text-center shadow-2xl shadow-black/40 overflow-hidden">
+          <div class="absolute -top-20 -right-20 w-60 h-60 bg-brand-primary/20 rounded-full blur-3xl" aria-hidden="true"></div>
+          <div class="absolute -bottom-20 -left-20 w-60 h-60 bg-brand-secondary/20 rounded-full blur-3xl" aria-hidden="true"></div>
+
+          <div class="relative">
+            <div class="inline-flex items-center gap-2 bg-brand-card border border-brand-border px-3.5 py-1.5 rounded-full mb-6">
+              <span class="w-2 h-2 rounded-full bg-brand-wa animate-pulse-soft"></span>
+              <span class="text-[11px] font-semibold tracking-[0.18em] text-brand-muted uppercase">Vamos conversar</span>
+            </div>
+
+            <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight text-brand-text leading-tight">
+              Seu negócio também pode ter uma <span class="text-gradient">presença profissional</span> na internet.
+            </h2>
+
+            <p class="mt-5 text-brand-muted text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
+              Fale comigo e explique o que você precisa. Vamos conversar sobre o projeto ideal para sua empresa.
+            </p>
+
+            <div class="mt-9 flex flex-col sm:flex-row items-center justify-center gap-3">
+              <a href="#" id="convertCta" class="group inline-flex items-center justify-center gap-2.5 bg-brand-wa hover:brightness-110 text-white font-semibold px-7 py-4 rounded-xl transition shadow-lg shadow-brand-wa/30 text-base">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                Solicitar orçamento pelo WhatsApp
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="transition-transform group-hover:translate-x-0.5" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </a>
+              <a href="mailto:contato@estudioweb.com" class="inline-flex items-center justify-center gap-2 bg-transparent hover:bg-brand-card border border-brand-border text-brand-text font-semibold px-6 py-4 rounded-xl transition text-sm">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                Enviar e-mail
+              </a>
+            </div>
+
+            <p class="mt-8 text-xs text-brand-muted">Atendimento rápido. Resposta em horário comercial.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-brand-bg2 border-t border-brand-border pt-16 pb-8">
+    <div class="max-w-7xl mx-auto px-5 md:px-8">
+      <div class="grid md:grid-cols-12 gap-10 md:gap-8 pb-12">
+        <div class="md:col-span-5">
+          <a href="#inicio" class="flex items-center gap-2.5">
+            <div class="w-9 h-9 rounded-lg bg-gradient-to-br from-brand-primary to-brand-secondary flex items-center justify-center">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#080B12" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+            </div>
+            <div>
+              <div class="font-bold text-brand-text tracking-tight">Estúdio Web</div>
+              <div class="text-[11px] text-brand-muted font-medium">Desenvolvimento profissional</div>
+            </div>
+          </a>
+          <p class="mt-5 text-sm text-brand-muted leading-relaxed max-w-md">
+            Criamos sites profissionais para empresas e profissionais que querem apresentar melhor seus serviços na internet.
+          </p>
+          <a href="#" id="footerCta" class="mt-6 inline-flex items-center gap-2 text-sm text-brand-primary hover:text-brand-text font-semibold transition">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Solicitar orçamento
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </a>
+        </div>
+
+        <div class="md:col-span-3">
+          <h3 class="text-sm font-bold text-brand-text mb-4">Navegação</h3>
+          <ul class="space-y-2.5">
+            <li><a href="#inicio" class="text-sm text-brand-muted hover:text-brand-primary transition">Início</a></li>
+            <li><a href="#projetos" class="text-sm text-brand-muted hover:text-brand-primary transition">Projetos</a></li>
+            <li><a href="#servicos" class="text-sm text-brand-muted hover:text-brand-primary transition">Serviços</a></li>
+            <li><a href="#orcamento" class="text-sm text-brand-muted hover:text-brand-primary transition">Orçamento</a></li>
+          </ul>
+        </div>
+
+        <div class="md:col-span-4">
+          <h3 class="text-sm font-bold text-brand-text mb-4">Contato</h3>
+          <ul class="space-y-3">
+            <li class="flex items-center gap-3 text-sm text-brand-muted">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="text-brand-wa shrink-0" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              <a href="#" class="footerWaLink hover:text-brand-primary transition">+55 (85) 98147-9071</a>
+            </li>
+            <li class="flex items-center gap-3 text-sm text-brand-muted">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-brand-primary shrink-0" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+              Desenvolvimento web profissional
+            </li>
+            <li class="flex items-center gap-3 text-sm text-brand-muted">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-brand-primary shrink-0" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+              Atendimento online em todo o Brasil
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="pt-8 border-t border-brand-border flex flex-col md:flex-row items-center justify-between gap-4">
+        <p class="text-xs text-brand-muted">© 2026 Estúdio Web. Todos os direitos reservados.</p>
+        <p class="text-xs text-brand-muted">Desenvolvido com foco em performance e conversão.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating WhatsApp -->
+  <a href="#" id="floatingWa" aria-label="Solicite um orçamento pelo WhatsApp" title="Solicite um orçamento" class="fixed bottom-6 right-6 z-50 group">
+    <span class="absolute inset-0 bg-brand-wa rounded-full animate-ping opacity-30"></span>
+    <span class="relative flex items-center justify-center w-14 h-14 bg-brand-wa hover:brightness-110 rounded-full shadow-xl shadow-brand-wa/40 transition">
+      <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="white" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    </span>
+    <span class="hidden md:block absolute right-full mr-3 top-1/2 -translate-y-1/2 bg-brand-bg border border-brand-border text-brand-text text-xs font-medium px-3 py-2 rounded-lg whitespace-nowrap opacity-0 group-hover:opacity-100 transition pointer-events-none shadow-lg">
+      Solicite um orçamento
+    </span>
+  </a>
+
+  <script>
+    // ============ CONFIG CENTRAL ============
+    const WHATSAPP_NUMBER = "5585981479071";
+
+    // ============ FUNÇÕES ============
+    function createWhatsAppLink(message) {
+      const encoded = encodeURIComponent(message);
+      return `https://wa.me/${WHATSAPP_NUMBER}?text=${encoded}`;
+    }
+
+    // Mensagens contextuais
+    const WA_MESSAGES = {
+      hero: "Olá! Conheci seu portfólio e gostaria de solicitar um orçamento para criação de um site.",
+      projects: "Olá! Vi os projetos do seu portfólio e gostaria de conversar sobre um site para minha empresa.",
+      footer: "Olá! Gostaria de saber mais sobre a criação de sites.",
+      floating: "Olá! Vi seu portfólio e gostaria de conversar sobre um projeto."
+    };
+
+    // ============ APLICAR LINKS WHATSAPP ============
+    document.getElementById('headerCta').href = createWhatsAppLink(WA_MESSAGES.hero);
+    document.getElementById('mobileCta').href = createWhatsAppLink(WA_MESSAGES.hero);
+    document.getElementById('heroCta').href = createWhatsAppLink(WA_MESSAGES.hero);
+    document.getElementById('projectsCta').href = createWhatsAppLink(WA_MESSAGES.projects);
+    document.getElementById('convertCta').href = createWhatsAppLink(WA_MESSAGES.projects);
+    document.getElementById('footerCta').href = createWhatsAppLink(WA_MESSAGES.footer);
+    document.getElementById('floatingWa').href = createWhatsAppLink(WA_MESSAGES.floating);
+
+    // Link WhatsApp no rodapé (telefone clicável)
+    const footerWaLink = document.querySelector('.footerWaLink');
+    if (footerWaLink) footerWaLink.href = createWhatsAppLink(WA_MESSAGES.footer);
+
+    // ============ DADOS DOS PROJETOS ============
+    const projects = [
+      {
+        name: "Pintor Residencial",
+        niche: "Serviços residenciais",
+        description: "Landing page focada em conversão, apresentação de serviços de pintura e solicitação rápida de orçamento.",
+        url: "./site-pintor/",
+        image: "https://images.unsplash.com/photo-1562259949-e8e7689d782a?auto=format&fit=crop&w=800&q=70",
+        alt: "Profissional aplicando tinta em parede residencial com rolo de pintura"
+      },
+      {
+        name: "Psicologia Clínica",
+        niche: "Profissionais de saúde",
+        description: "Site com apresentação profissional, especialidades e foco na geração de contatos para atendimento.",
+        url: "./site-psicologo/",
+        image: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=70",
+        alt: "Consultório de psicologia com ambiente acolhedor, poltrona e iluminação suave"
+      },
+      {
+        name: "Loja de Açaí",
+        niche: "Alimentação",
+        description: "Menu digital desenvolvido para facilitar a apresentação dos produtos e direcionar pedidos para o WhatsApp.",
+        url: "./site-acai/",
+        image: "https://images.unsplash.com/photo-1590080875515-8a3a8dc5735e?auto=format&fit=crop&w=800&q=70",
+        alt: "Bowl de açaí com granola, frutas e acompanhamentos em apresentação premium"
+      },
+      {
+        name: "Barbearia Moderna",
+        niche: "Beleza e estética",
+        description: "Site com identidade urbana, apresentação de serviços, preços e recursos para facilitar reservas.",
+        url: "./site-barbearia/",
+        image: "https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=800&q=70",
+        alt: "Interior de barbearia moderna com cadeira profissional e ambiente urbano"
+      },
+      {
+        name: "Geladão Gourmet",
+        niche: "Eventos e alimentação",
+        description: "Página comercial desenvolvida para apresentar sabores, produtos, combos e oportunidades para eventos.",
+        url: "./site-geladao/",
+        image: "https://images.unsplash.com/photo-1488900128323-21503983a07e?auto=format&fit=crop&w=800&q=70",
+        alt: "Apresentação colorida de sobremesa gelada gourmet com frutas e cobertura"
+      },
+      {
+        name: "Corretor de Imóveis",
+        niche: "Mercado imobiliário",
+        description: "Vitrine digital para apresentação de imóveis e geração de contatos interessados em oportunidades imobiliárias.",
+        url: "./site-corretor/",
+        image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=800&q=70",
+        alt: "Fachada moderna de imóvel residencial em apresentação imobiliária profissional"
+      }
+    ];
+
+    // ============ RENDER PROJETOS ============
+    const grid = document.getElementById('projectsGrid');
+    projects.forEach((project, idx) => {
+      const card = document.createElement('article');
+      card.className = 'project-card group bg-brand-card border border-brand-border rounded-2xl overflow-hidden flex flex-col';
+      card.innerHTML = `
+        <a href="${project.url}" class="block relative aspect-video overflow-hidden bg-brand-bg2" aria-label="Pré-visualização do projeto ${project.name}">
+          <img
+            src="${project.image}"
+            alt="${project.alt}"
+            class="w-full h-full object-cover transition duration-500 group-hover:scale-105"
+            loading="${idx < 3 ? 'eager' : 'lazy'}"
+            decoding="async"
+          >
+          <div class="absolute top-3 left-3">
+            <span class="niche-chip text-[10px] md:text-[11px] font-semibold uppercase tracking-wider px-2.5 py-1 rounded-md">${project.niche}</span>
+          </div>
+          <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition"></div>
+        </a>
+        <div class="p-5 md:p-6 flex-1 flex flex-col">
+          <h3 class="text-lg font-bold text-brand-text mb-2">${project.name}</h3>
+          <p class="text-sm text-brand-muted leading-relaxed flex-1">${project.description}</p>
+          <div class="mt-5 pt-5 border-t border-brand-border">
+            <a href="${project.url}" class="inline-flex items-center gap-2 text-sm font-semibold text-brand-primary hover:text-brand-text transition group/btn">
+              Acessar projeto
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="card-arrow" aria-hidden="true">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+          </div>
+        </div>
+      `;
+      grid.appendChild(card);
+    });
+
+    // ============ MENU MOBILE ============
+    const menuToggle = document.getElementById('menuToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const iconOpen = document.getElementById('iconOpen');
+    const iconClose = document.getElementById('iconClose');
+
+    menuToggle.addEventListener('click', () => {
+      const isOpen = mobileMenu.classList.toggle('open');
+      iconOpen.classList.toggle('hidden', isOpen);
+      iconClose.classList.toggle('hidden', !isOpen);
+      menuToggle.setAttribute('aria-expanded', isOpen);
+      menuToggle.setAttribute('aria-label', isOpen ? 'Fechar menu' : 'Abrir menu');
+    });
+
+    document.querySelectorAll('.mobile-link').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.remove('open');
+        iconOpen.classList.remove('hidden');
+        iconClose.classList.add('hidden');
+        menuToggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    // ============ HEADER SHADOW ON SCROLL ============
+    const header = document.getElementById('header');
+    const onScroll = () => {
+      if (window.scrollY > 10) {
+        header.classList.add('shadow-lg', 'shadow-black/20');
+      } else {
+        header.classList.remove('shadow-lg', 'shadow-black/20');
+      }
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  </script>
 </body>
 </html>
